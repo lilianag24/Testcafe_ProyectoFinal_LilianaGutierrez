@@ -49,6 +49,8 @@ class page{
         this.myInfo_link = Selector('a[title="Information"');
         this.myWishList_link = Selector('a[title="My wishlists"');
         this.home_link = Selector('a[title="Home');
+
+        
     }
 }
 
