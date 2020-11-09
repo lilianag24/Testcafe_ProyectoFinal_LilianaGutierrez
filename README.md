@@ -88,7 +88,8 @@ test('Text typing basics', async t => {
 });
 ```
 ### Cómo correr los scripts
-Ejecutar alguno de los siguientes comando desde la Terminal en Visual Studio o la consola de Windows. Nota: *los comandos deben ejecutarse dentro del folder TestCafeScripts\*
+Ejecutar alguno de los siguientes comando desde la Terminal en Visual Studio o la consola de Windows. Nota: * los comandos deben ejecutarse dentro del folder TestCafeScripts\ *
+
 Chrome
 ```sh
 testcafe chrome expects\ --reporter html:reports/AllModules_Report_Chrome_20201108.html 
