@@ -1,20 +1,17 @@
-import Header from '../utils/header.js';
-import AuthPage from '../utils/authenticationPage.js';
-import MyAccountPage from '../utils/myAccountPage.js';
-import ResultsPage from '../utils/resultsPage.js';
-import ShoppingPage from '../utils/shoppingCartPage.js';
+import Header from '../pages/header.js';
+import AuthPage from '../pages/authenticationPage.js';
+import MyAccountPage from '../pages/myAccountPage.js';
+import ResultsPage from '../pages/resultsPage.js';
+import ShoppingPage from '../pages/shoppingCartPage.js';
+import shoppingCartPage from '../pages/shoppingCartPage.js';
 import { data } from '../data/data.js';
-import shoppingCartPage from '../utils/shoppingCartPage.js';
 
-
-fixture('My Account Tests')
+fixture('Pruebas - Compra de Productos')
     .page('http://automationpractice.com');
 
-test ('Comprar un producto (Vestido)', async t =>{
+test ('TC_PURCHASE01 - Comprar un producto (Vestido) - Payment Bank wire', async t =>{
     await t
         .maximizeWindow()
-        .click(Header.signIn_link)
-        .expect(AuthPage.pageTitle.innerText).contains('AUTHENTICATION')
         console.log("Correo: ", data.email01)
         console.log("Password: ", data.password01)
 
@@ -24,11 +21,6 @@ test ('Comprar un producto (Vestido)', async t =>{
         .expect(MyAccountPage.pageMessage.innerText).contains('Welcome to your account')
 
     await Header.searchProduct('Dress');
-    await t
-        .expect(ResultsPage.searchTitle.innerText).contains("DRESS")
-        const itemsCount = ResultsPage.itemName.count;
-    await t
-        .expect(itemsCount).gt(0)
     
     await t
         .click(ResultsPage.itemName.withText(data.dressName))
@@ -50,7 +42,7 @@ test ('Comprar un producto (Vestido)', async t =>{
 
     await t
         .expect(ShoppingPage.section_title.innerText).contains('SHOPPING-CART SUMMARY')
-        .expect(ShoppingPage.productQuantity.value).eql('1')
+        .expect(ShoppingPage.productQuantity.innerText).contains('1')
         .expect(ShoppingPage.totalPrice.innerText).eql(price)
         .click(ShoppingPage.proceedCheckout1_button)
 
@@ -80,11 +72,11 @@ test ('Comprar un producto (Vestido)', async t =>{
         
     await t
         .expect(ShoppingPage.section_title.innerText).contains('ORDER CONFIRMATION')
-        .expect(ShoppingPage.sucessMessage.innerText).contains('Your order on My Store is complete')
+        .expect(ShoppingPage.bankSuccessMessage.innerText).contains('Your order on My Store is complete')
         .click(shoppingCartPage.backToOders_button)
 });
 
-test ('Comprar 2 producto (Camiseta y Blusa)', async t =>{
+test ('TC_PURCHASE02 - Comprar 2 productos (Camiseta y Blusa) - Payment by check', async t =>{
     await t
         .maximizeWindow()
         .click(Header.signIn_link)
@@ -138,8 +130,7 @@ test ('Comprar 2 producto (Camiseta y Blusa)', async t =>{
 
     await t
         .expect(ShoppingPage.section_title.innerText).contains('SHOPPING-CART SUMMARY')
-        .expect(ShoppingPage.productQuantity.value).eql('1')
-        .expect(ShoppingPage.totalPrice.innerText).eql(price1+price2)
+        .expect(ShoppingPage.productQuantity.innerText).contains('2')
         .click(ShoppingPage.proceedCheckout1_button)
 
     await t
@@ -158,16 +149,16 @@ test ('Comprar 2 producto (Camiseta y Blusa)', async t =>{
         .expect(ShoppingPage.section_title.innerText).contains('PLEASE CHOOSE YOUR PAYMENT METHOD')
         let finalPrice = await ShoppingPage.finalPrice.innerText;
     await t
-        .click(ShoppingPage.payBank_link)
+        .click(ShoppingPage.payCheck_link)
 
     await t
         .expect(ShoppingPage.section_title.innerText).contains('ORDER SUMMARY')
-        .expect(ShoppingPage.payment_title.innerText).contains('BANK-WIRE PAYMENT.')
+        .expect(ShoppingPage.payment_title.innerText).contains('CHECK PAYMENT')
         .expect(ShoppingPage.totalAmount.innerText).contains(finalPrice)
         .click(ShoppingPage.confirmOder_button)       
         
     await t
         .expect(ShoppingPage.section_title.innerText).contains('ORDER CONFIRMATION')
-        .expect(ShoppingPage.sucessMessage.innerText).contains('Your order on My Store is complete')
+        .expect(ShoppingPage.checkSuccessMessage.innerText).contains('Your order on My Store is complete')
         .click(shoppingCartPage.backToOders_button)
 })

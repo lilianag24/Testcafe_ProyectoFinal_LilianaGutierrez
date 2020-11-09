@@ -3,7 +3,7 @@ import {Selector} from 'testcafe';
 class shoppingCartPage{
     constructor(){
         this.section_title = Selector('#center_column > h1');
-        this.productQuantity = Selector('.cart_quantity_input');
+        this.productQuantity = Selector('#summary_products_quantity');
         this.totalPrice = Selector('#total_product'); 
         this.proceedCheckout1_button = Selector('[href$="controller=order&step=1"]');
         
@@ -27,7 +27,8 @@ class shoppingCartPage{
         this.confirmOder_button = Selector('#cart_navigation > button');
 
         //Selectores para Order Confirmation 
-        this.sucessMessage = Selector('#center_column > div > p > strong');
+        this.bankSuccessMessage = Selector('#center_column > div > p > strong');
+        this.checkSuccessMessage = Selector('#center_column > p.alert.alert-success');
         this.backToOders_button = Selector('[href$="controller=history"]');
     }
 }

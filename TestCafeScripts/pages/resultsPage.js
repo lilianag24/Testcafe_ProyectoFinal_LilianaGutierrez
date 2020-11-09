@@ -6,6 +6,7 @@ class resultsPage{
         this.searchTitle = Selector('#center_column > h1 > span.lighter');
         this.itemName = Selector('.product-container a.product-name');
         this.addCart_button = Selector('.product-container a[title="Add to cart"]');
+        this.alertError = Selector('p.alert-warning');
 
         //Selectores para Detalles del Producto
         this.itemName_details = Selector('[itemprop="name"]'); 
