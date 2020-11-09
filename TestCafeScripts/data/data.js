@@ -3,6 +3,7 @@ let randomString = Math.random().toString(26).substring(7);
 
 //Se importa como un objeto
 let data = {
+    //Datos para crear una cuenta válida
     email: 'dummy' + randomNum + '@mailinator.com',
     firstName : "Liliana",
     lastName : "Gutierrez",
@@ -13,11 +14,13 @@ let data = {
     zipCode : "62985",
     mobilePhone : "333-999-8888",
     alias : "Mi Casa",
-    //Credenciales validas para usario ya existente
-    email01: 'tester01@gmail.com', 
+    //Datos para crear una cuenta con datos no válidos
+    invalidEmail : "account.com",
+    //Datos para iniciar sesión con usuario existente
+    email01: 'tester02@gmail.com', 
     password01: 'abc123',
     firstName01: 'Tester',
-    lastName01: 'Gomez',
+    lastName01: 'Gutierrez',
     address01: 'Apple Ave.',
     city01: 'Portland',
     state01: 'Oregon',
@@ -32,7 +35,10 @@ let data = {
     blouseSize : 'L',
     tshirtName : 'Faded Short Sleeve T-shirts',
     tshirtSize : 'M',
-    Comment01 : "Prueba para compra de 2 productos"
+    Comment01 : "Prueba para compra de 2 productos",
+    //Datos para búsqueda de productos
+    validItem : "Dress",
+    invalidItem: "invalid"
 }
 
 export {data}

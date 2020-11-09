@@ -1,15 +1,15 @@
-import Header from '../utils/header.js';
-import AuthPage from '../utils/authenticationPage.js';
-import CreateAcctPage from '../utils/createAccountPage.js';
-import MyAccountPage from '../utils/myAccountPage.js';
-import OrderHistoryPage from '../utils/orderHistoryPage.js'
-import MyAddressPage from '../utils/myAddressPage.js'
+import Header from '../pages/header.js';
+import AuthPage from '../pages/authenticationPage.js';
+import CreateAcctPage from '../pages/createAccountPage.js';
+import MyAccountPage from '../pages/myAccountPage.js';
+import OrderHistoryPage from '../pages/orderHistoryPage.js'
+import MyAddressPage from '../pages/myAddressPage.js'
 import { data } from '../data/data.js';
 
-fixture('My Account Tests')
+fixture('Pruebas - Mi Cuenta')
     .page('http://automationpractice.com');
 
-test ('Crear una nueva cuenta', async t =>{
+test ('TC_ACCOUNT01 - Crear una nueva cuenta', async t =>{
     await t
         .maximizeWindow()
         .click(Header.signIn_link)
@@ -62,11 +62,9 @@ test ('Crear una nueva cuenta', async t =>{
         .expect(MyAccountPage.pageMessage.innerText).contains('Welcome to your account')
 });
 
-test ('Ver la página de Orders History', async t =>{
+test ('TC_ACCOUNT02 - Visualizar página de Historial de Ordenes', async t =>{
     await t
         .maximizeWindow()
-        .click(Header.signIn_link)
-        .expect(AuthPage.pageTitle.innerText).contains('AUTHENTICATION')
         console.log("Correo: ", data.email01)
         console.log("Password: ", data.password01)
 
@@ -84,11 +82,9 @@ test ('Ver la página de Orders History', async t =>{
 });
 
 
-test ('Actualizar Mi Dirección', async t =>{
+test ('TC_ACCOUNT03 - Actualizar Mi Dirección', async t =>{
     await t
         .maximizeWindow()
-        .click(Header.signIn_link)
-        .expect(AuthPage.pageTitle.innerText).contains('AUTHENTICATION')
         console.log("Correo: ", data.email01)
         console.log("Password: ", data.password01)
     
@@ -118,4 +114,16 @@ test ('Actualizar Mi Dirección', async t =>{
         //Validar que el Alias de la dirección se cambió correctamente
         .expect(MyAddressPage.addressAlias_title.innerText).eql(data.newAlias.toUpperCase())
         console.log(data.newAlias.toUpperCase())
+});
+
+test('TC_ACCOUNT04 - Crear cuenta con correo no válido', async t =>{
+    await t
+        .maximizeWindow()
+        .click(Header.signIn_link)
+
+    await t
+        .typeText(AuthPage.newEmail_input, data.invalidEmail)
+        .expect(AuthPage.newEmail_input.value).contains(data.invalidEmail)
+        .click(AuthPage.createAccount_btn)
+        .expect(AuthPage.messageError.innerText).contains('Invalid email address.')
 });

@@ -1,5 +1,5 @@
 import {Selector, t} from 'testcafe';
-import ResultsPage from '../utils/resultsPage.js';
+import ResultsPage from '../pages/resultsPage.js';
 
 class pageHeader {
     constructor(){
