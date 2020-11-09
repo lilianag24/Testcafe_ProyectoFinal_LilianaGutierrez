@@ -33,23 +33,23 @@ Verificar que la instalación fue correcta utilizando el comando:
 $ testcafe --version
 ``` 
 
-##Contenido del proyecto:
+## Contenido del proyecto:
                 
 + e-Commerce_TestPlan_v1.1.docx (Plan de Pruebas)
 + TC_eCommerce_v1.0.xlsx (Archivos de Casos de Prueba)
 + Bugs_report_eCommerce_v1.0.xlsx (Reporte de Defectos)
 + Folder TestCafeScripts (Scripts de Testcafe)
 
-###Documentación sobre el proyecto
+### Documentación sobre el proyecto
 
 Los scripts de Testcafe se realizaron utilizando el patrón de diseño de **Page Model**
 
-####¿Que es Page Model?
+#### ¿Que es Page Model?
 Page Model es un patrón de automatización de pruebas que permite crear una abstracción de la página(s) a probar y usarla en los tests para hacer referencia a los elementos de la página.
-####¿Por qué utilizar Page Model?
+#### ¿Por qué utilizar Page Model?
 Page Model permite mantener todos los selectores en un lugar. Sí la página web llega a cambiar, solo se tendrá que modificar el modelo de página y no cada uno de los archivos de pruebas.
 
-###¿Cómo se crea un Page Model?
+### ¿Cómo se crea un Page Model?
 Paso 1: declarar una clase page model para cada página
 ```javascript
 class Page {
@@ -87,7 +87,7 @@ test('Text typing basics', async t => {
         .expect(page.nameInput.value).eql('Parker');
 });
 ```
-###Como ejecutar los scripts
+### Cómo correr los scripts
 Ejecutar alguno de los siguientes comando desde la Terminal en Visual Studio o la consola de Windows. Nota: *los comandos deben ejecutarse dentro del folder TestCafeScripts\*
 Chrome
 ```sh
